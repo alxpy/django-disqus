@@ -1,14 +1,20 @@
 import base64
 import hashlib
 import hmac
-import simplejson
 import time
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
 
 from django import template
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.utils.functional import curry
-from django.utils.encoding import force_unicode
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    from django.utils.encoding import force_unicode
 
 register = template.Library()
 

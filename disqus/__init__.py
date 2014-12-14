@@ -1,9 +1,15 @@
 import urllib
-import urllib2
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 
 from django.core.management.base import CommandError
-from django.utils import simplejson as json
 from django.conf import settings
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
 
 def call(method, data, post=False):
     """

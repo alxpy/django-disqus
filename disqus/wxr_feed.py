@@ -6,7 +6,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.contrib.syndication.views import Feed, add_domain
 from django.utils import feedgenerator, tzinfo
-from django.utils.encoding import force_unicode, iri_to_uri
+from django.utils.encoding import iri_to_uri
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    from django.utils.encoding import force_unicode
 
 USE_SINGLE_SIGNON = getattr(settings, "DISQUS_USE_SINGLE_SIGNON", False)
 
